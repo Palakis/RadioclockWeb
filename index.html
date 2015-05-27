@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RadioclockWeb</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/Radioclock.js"></script>
+</head>
+<body>
+	<div class="clock-container">
+		<canvas id="clock" width="500" height="500">
+			Votre navigateur n'est pas compatible avec la fonctionnalité Canvas disponible dans les navigateurs récents. Veuillez mettre à jour votre navigateur
+		</canvas>
+	</div>
+	<div class="status">
+		<div class="status-row">
+			<div class="status-item active" data-active-text="ON AIR">
+				OFF AIR
+			</div>
+			<div class="status-item" data-active="ALERTE MODUL">
+				MODUL OK
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(event) {
+			clock = new Radioclock('clock');
+
+			setInterval(function() {
+				clock.update();
+			}, 500);
+		});
+	</script>
+</body>
+</html>

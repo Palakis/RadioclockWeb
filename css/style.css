@@ -1,0 +1,51 @@
+html, body {
+	background-color: black;
+	color: white;
+	height: 100%;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.status {
+	display: table;
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	height: 20%;
+	font-family: Verdana;
+	table-layout: fixed;
+}
+.status-row {
+	display: table-row;
+}
+.status-item {
+	display: table-cell;
+	text-align: center;
+	height: 100%;
+	font-size: 48px;
+	background-color: green;
+	padding: 10px;
+	vertical-align: middle;
+}
+.status-item.active {
+	background-color: orange;
+	color: black;
+}
+.status-item.alert {
+	background-color: red;
+	color: black;
+}
+
+.clock-container {
+	height: 500px;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#clock {
+	height: 100%;
+	width: 100%;
+}
