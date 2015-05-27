@@ -2,6 +2,9 @@ function Radioclock(item) {
 	this.item = document.getElementById(item);
 	this.ctx = this.item.getContext('2d');
 
+	this.colorOn = "red";
+	this.colorOff = "#111";
+
 	this.rayon = (this.item.height / 2) - (this.item.height * 0.07);
 	this.centerX = this.item.height / 2;
 	this.centerY = this.item.width / 2;
@@ -13,10 +16,10 @@ function Radioclock(item) {
 		this.dotPositions.push([x, y]);
 	}
 
-	this.drawSeconds(0, "#222");
-	this.drawQuarters("red");
+	this.drawSeconds(0, this.colorOff);
+	this.drawQuarters(this.colorOn);
 	this.drawColon(false);
-	this.drawDigits(88, 88, 88, "#222");
+	this.drawDigits(88, 88, 88, this.colorOff);
 }
 
 Radioclock.prototype.d2r = function(deg) {
@@ -167,7 +170,7 @@ Radioclock.prototype.drawSeconds = function(seconds, color) {
 		if(i <= seconds) {
 			this.drawDot(x, y, this.rayon * 0.020, color);
 		} else {
-			this.drawDot(x, y, this.rayon * 0.020, "#222");
+			this.drawDot(x, y, this.rayon * 0.020, this.colorOff);
 		}
 	}
 }
@@ -258,9 +261,9 @@ Radioclock.prototype.drawColon = function(state) {
 
 	var color;
 	if(state == true) {
-		color = "red";
+		color = this.colorOn;
 	} else {
-		color = "#222";
+		color = this.colorOff;
 	}
 
 	this.drawDot(
@@ -279,11 +282,13 @@ Radioclock.prototype.drawColon = function(state) {
 
 Radioclock.prototype.update = function() {
 	var date = new Date();
-	this.drawSeconds(date.getSeconds(), "red");
+	this.drawSeconds(date.getSeconds(), this.colorOn);
 	this.drawColon(true);
-	this.drawDigits(88, 88, 88, "#222"); // Pour l'effet LED éteinte
-	this.drawDigits(date.getHours(), date.getMinutes(), date.getSeconds(), "red");
+	this.drawDigits(88, 88, 88, this.colorOff); // Pour l'effet LED éteinte
+	this.drawDigits(date.getHours(), date.getMinutes(), date.getSeconds(), this.colorOn);
+
+	var that = this;
 	setTimeout(function() {
-		//this.drawColon(false);
+		that.drawColon(false);
 	}, 500);
 }
