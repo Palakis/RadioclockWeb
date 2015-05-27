@@ -154,7 +154,7 @@ Radioclock.prototype.drawSeconds = function(seconds, color) {
 }
 
 Radioclock.prototype.drawDigits = function(h, m, s, color) {
-	var w = 200;
+	var w = this.item.width / 2.5;
 	var largeurDigit = w/4;
 	var blinkerSpacing = w * 0.09;
 	// Premier chiffre heure

@@ -6,19 +6,20 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="js/Radioclock.js"></script>
 </head>
-<body>
+<body ng-app="radioclock">
 	<div class="clock-container">
-		<canvas id="clock" width="500" height="500">
+		<div class="spacer"></div>
+		<canvas id="clock" width="1000" height="1000">
 			Votre navigateur n'est pas compatible avec la fonctionnalité Canvas disponible dans les navigateurs récents. Veuillez mettre à jour votre navigateur
 		</canvas>
 	</div>
-	<div class="status">
+	<div class="status" ng-controller="StatusCtrl">
 		<div class="status-row">
-			<div class="status-item active" data-active-text="ON AIR">
+			<div class="status-item" data-active-text="ON AIR">
 				OFF AIR
 			</div>
 			<div class="status-item" data-active="ALERTE MODUL">
-				MODUL OK
+				ANTENNE OK
 			</div>
 		</div>
 	</div>
