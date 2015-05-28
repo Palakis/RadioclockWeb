@@ -16,6 +16,7 @@ function Radioclock(item) {
 		this.dotPositions.push([x, y]);
 	}
 
+	this.drawDigits(88, 88, 88, this.colorOff); // Wipes previous digits
 	this.drawSeconds(0, this.colorOff);
 	this.drawQuarters(this.colorOn);
 	this.drawColon(false);
@@ -281,6 +282,7 @@ Radioclock.prototype.drawColon = function(state) {
 
 Radioclock.prototype.update = function() {
 	var date = new Date();
+	this.drawDigits(88, 88, 88, this.colorOff);
 	this.drawSeconds(date.getSeconds(), this.colorOn);
 	this.drawColon(true);
 	this.drawDigits(date.getHours(), date.getMinutes(), date.getSeconds(), this.colorOn);
