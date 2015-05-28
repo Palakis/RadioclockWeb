@@ -19,7 +19,6 @@ function Radioclock(item) {
 	this.drawSeconds(0, this.colorOff);
 	this.drawQuarters(this.colorOn);
 	this.drawColon(false);
-	this.drawDigits(88, 88, 88, this.colorOff);
 }
 
 Radioclock.prototype.d2r = function(deg) {
@@ -284,7 +283,6 @@ Radioclock.prototype.update = function() {
 	var date = new Date();
 	this.drawSeconds(date.getSeconds(), this.colorOn);
 	this.drawColon(true);
-	this.drawDigits(88, 88, 88, this.colorOff); // Pour l'effet LED éteinte
 	this.drawDigits(date.getHours(), date.getMinutes(), date.getSeconds(), this.colorOn);
 
 	var that = this;
