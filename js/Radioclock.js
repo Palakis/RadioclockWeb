@@ -31,6 +31,8 @@ Radioclock.prototype.drawDot = function(x, y, radius, color) {
 	this.ctx.arc(x, y, radius, 0, Math.PI * 2, false);
 	this.ctx.fillStyle = color;
 	this.ctx.fill();
+	this.ctx.strokeStyle = "black";
+	this.ctx.stroke();
 }
 
 Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
