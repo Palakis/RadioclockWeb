@@ -1,4 +1,4 @@
-function Radioclock(item) {
+function Clock(item) {
 	this.item = document.getElementById(item);
 	this.ctx = this.item.getContext('2d');
 
@@ -22,11 +22,11 @@ function Radioclock(item) {
 	this.drawColon(false);
 }
 
-Radioclock.prototype.d2r = function(deg) {
+Clock.prototype.d2r = function(deg) {
 	return deg * Math.PI / 180;
 }
 
-Radioclock.prototype.drawDot = function(x, y, radius, color) {
+Clock.prototype.drawDot = function(x, y, radius, color) {
 	this.ctx.beginPath();
 	this.ctx.arc(x, y, radius, 0, Math.PI * 2, false);
 	this.ctx.fillStyle = color;
@@ -35,7 +35,7 @@ Radioclock.prototype.drawDot = function(x, y, radius, color) {
 	this.ctx.stroke();
 }
 
-Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
+Clock.prototype.drawDigit = function(x, y, w, color, digit) {
 	var segmentLength = 4;
 	var separation = w * 0.25;
 	var cornerSeparation = w * 0.15;
@@ -84,9 +84,9 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
 	if(digit & 1) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius + cornerSeparation + separation*(i), 
-                	y + radius, 
-                	radius, 
+                	x + radius + cornerSeparation + separation*(i),
+                	y + radius,
+                	radius,
                 	color
                 );
             }
@@ -96,9 +96,9 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
     if(digit & 2) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius + (cornerSeparation*2) + (separation*(segmentLength-1)), 
-                	y + radius + cornerSeparation + separation*(i), 
-                	radius, 
+                	x + radius + (cornerSeparation*2) + (separation*(segmentLength-1)),
+                	y + radius + cornerSeparation + separation*(i),
+                	radius,
                 	color
                 );
             }
@@ -108,9 +108,9 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
     if(digit & 4) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius + (cornerSeparation*2) + (separation*(segmentLength-1)), 
-                	y + (radius/2) + (cornerSeparation*2) + (separation*segmentLength) + (separation*i), 
-                	radius, 
+                	x + radius + (cornerSeparation*2) + (separation*(segmentLength-1)),
+                	y + (radius/2) + (cornerSeparation*2) + (separation*segmentLength) + (separation*i),
+                	radius,
                 	color
                 );
             }
@@ -120,9 +120,9 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
     if(digit & 8) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius + cornerSeparation + separation*i, 
-                	y + (radius*2) + (cornerSeparation*2.4) + (separation*((segmentLength*2)-1)), 
-                	radius, 
+                	x + radius + cornerSeparation + separation*i,
+                	y + (radius*2) + (cornerSeparation*2.4) + (separation*((segmentLength*2)-1)),
+                	radius,
                 	color
                 );
             }
@@ -132,9 +132,9 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
     if(digit & 16) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius, 
-                	y + (radius/2) + (cornerSeparation*2) + (separation*segmentLength) + (separation*i), 
-                	radius, 
+                	x + radius,
+                	y + (radius/2) + (cornerSeparation*2) + (separation*segmentLength) + (separation*i),
+                	radius,
                 	color
                 );
             }
@@ -144,9 +144,9 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
     if(digit & 32) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius, 
-                	y + radius + cornerSeparation + (separation*(i)), 
-                	radius, 
+                	x + radius,
+                	y + radius + cornerSeparation + (separation*(i)),
+                	radius,
                 	color
                 );
             }
@@ -156,16 +156,16 @@ Radioclock.prototype.drawDigit = function(x, y, w, color, digit) {
     if(digit & 64) {
             for(var i = 0; i < segmentLength; i++) {
                 this.drawDot(
-                	x + radius + cornerSeparation + separation*i, 
-                	y + (radius/2) + cornerSeparation + (separation*(segmentLength)), 
-                	radius, 
+                	x + radius + cornerSeparation + separation*i,
+                	y + (radius/2) + cornerSeparation + (separation*(segmentLength)),
+                	radius,
                 	color
                 );
             }
     }
 }
 
-Radioclock.prototype.drawSeconds = function(seconds, color) {
+Clock.prototype.drawSeconds = function(seconds, color) {
 	for(var i = 0; i < 60; i++) {
 		var x = this.centerX + this.dotPositions[i][0];
 		var y = this.centerY + this.dotPositions[i][1];
@@ -177,7 +177,7 @@ Radioclock.prototype.drawSeconds = function(seconds, color) {
 	}
 }
 
-Radioclock.prototype.drawQuarters = function (color) {
+Clock.prototype.drawQuarters = function (color) {
 	var dotRadius = this.rayon * 0.020;
 	var radius = this.rayon + (dotRadius*4);
 	for(var i = 0; i < 12; i++) {
@@ -187,13 +187,13 @@ Radioclock.prototype.drawQuarters = function (color) {
 	}
 }
 
-Radioclock.prototype.zeroPad = function(num, size) {
+Clock.prototype.zeroPad = function(num, size) {
 	var s = num + "";
 	while (s.length < size) s = "0" + s;
 	return s;
 }
 
-Radioclock.prototype.drawDigits = function(h, m, s, color) {
+Clock.prototype.drawDigits = function(h, m, s, color) {
 	var w = this.item.width / 2.5;
 	var largeurDigit = w/4;
 	var blinkerSpacing = w * 0.09;
@@ -204,60 +204,60 @@ Radioclock.prototype.drawDigits = function(h, m, s, color) {
 
 	// Premier chiffre heure
 	this.drawDigit(
-		this.centerX - largeurDigit - largeurDigit - (largeurDigit/2), 
-		this.centerY, 
-		largeurDigit, 
-		color, 
+		this.centerX - largeurDigit - largeurDigit - (largeurDigit/2),
+		this.centerY,
+		largeurDigit,
+		color,
 		hourString[0]
 	);
 
 	// Deuxième chiffre heure
 	this.drawDigit(
-		this.centerX - largeurDigit, 
-		this.centerY, 
-		largeurDigit, 
+		this.centerX - largeurDigit,
+		this.centerY,
+		largeurDigit,
 		color,
 		hourString[1]
 	);
 
 	// Premier chiffre minute
 	this.drawDigit(
-		this.centerX + largeurDigit, 
-		this.centerY, 
+		this.centerX + largeurDigit,
+		this.centerY,
 		largeurDigit,
 		color,
 		minuteString[0]
 	);
-    
+
 	// Deuxième chiffre minute
-    this.drawDigit(
-    	this.centerX + largeurDigit + largeurDigit + (largeurDigit/2), 
-    	this.centerY, 
-    	largeurDigit,
-    	color,
-    	minuteString[1]
-    );
+  this.drawDigit(
+  	this.centerX + largeurDigit + largeurDigit + (largeurDigit/2),
+  	this.centerY,
+  	largeurDigit,
+  	color,
+  	minuteString[1]
+  );
 
-    // Premier chiffre secondes
-    this.drawDigit(
-    	this.centerX - (largeurDigit/1.7),
-    	this.centerY + (w/1.6),
-    	largeurDigit / 1.3,
-    	color,
-    	secondString[0]
-    );
+  // Premier chiffre secondes
+  this.drawDigit(
+  	this.centerX - (largeurDigit/1.7),
+  	this.centerY + (w/1.6),
+  	largeurDigit / 1.3,
+  	color,
+  	secondString[0]
+  );
 
-    // Deuxième chiffre secondes
-    this.drawDigit(
-    	this.centerX + (largeurDigit/1.7),
-    	this.centerY + (w/1.6),
-    	largeurDigit / 1.3,
-    	color,
-    	secondString[1]
-    );
+  // Deuxième chiffre secondes
+  this.drawDigit(
+  	this.centerX + (largeurDigit/1.7),
+  	this.centerY + (w/1.6),
+  	largeurDigit / 1.3,
+  	color,
+  	secondString[1]
+  );
 }
 
-Radioclock.prototype.drawColon = function(state) {
+Clock.prototype.drawColon = function(state) {
 	var w = this.item.width / 2.5;
 	var blinkerSpacing = w * 0.09;
 
@@ -269,20 +269,20 @@ Radioclock.prototype.drawColon = function(state) {
 	}
 
 	this.drawDot(
-		this.centerX, 
-		this.centerY - blinkerSpacing, 
-		this.rayon * 0.02, 
+		this.centerX,
+		this.centerY - blinkerSpacing,
+		this.rayon * 0.02,
 		color
 	);
     this.drawDot(
-    	this.centerX, 
-    	this.centerY + blinkerSpacing, 
-    	this.rayon * 0.02, 
+    	this.centerX,
+    	this.centerY + blinkerSpacing,
+    	this.rayon * 0.02,
     	color
     );
 }
 
-Radioclock.prototype.update = function() {
+Clock.prototype.update = function() {
 	var date = new Date();
 	this.drawDigits(88, 88, 88, this.colorOff);
 	this.drawSeconds(date.getSeconds(), this.colorOn);

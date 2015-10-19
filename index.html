@@ -4,19 +4,22 @@
 	<meta charset="utf-8">
 	<title>RadioclockWeb</title>
 	<link rel="stylesheet" href="css/style.css">
-	<script type="text/javascript" src="js/Radioclock.js"></script>
+	<script type="text/javascript" src="js/Clock.js"></script>
 </head>
 <body ng-app="radioclock">
 	<div class="clock-container">
 		<div class="spacer"></div>
 		<canvas id="clock" width="1000" height="1000">
-			Votre navigateur n'est pas compatible avec la fonctionnalité Canvas disponible dans les navigateurs récents. Veuillez mettre à jour votre navigateur
+			Votre navigateur n'est pas compatible avec la fonctionnalité Canvas disponible dans les navigateurs récents.
+			Mettez à jour votre navigateur pour profiter de l'horloge.
 		</canvas>
+		<div>
+			<p>Lol</p>
+		</div>
 	</div>
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function(event) {
-			clock = new Radioclock('clock');
-
+			clock = new Clock('clock');
 			setInterval(function() {
 				clock.update();
 			}, 1000);

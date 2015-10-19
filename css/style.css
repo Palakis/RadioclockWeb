@@ -3,6 +3,7 @@ html, body {
 	color: white;
 	height: 100%;
 }
+
 body {
 	padding: 0;
 	margin: 0;
@@ -18,9 +19,11 @@ body {
 	font-weight: bold;
 	table-layout: fixed;
 }
+
 .status-row {
 	display: table-row;
 }
+
 .status-item {
 	display: table-cell;
 	text-align: center;
@@ -31,10 +34,12 @@ body {
 	vertical-align: middle;
 	border: 1px solid black;
 }
+
 .status-item.active {
 	background-color: orange;
 	color: black;
 }
+
 .status-item.alert {
 	background-color: red;
 	color: black;
